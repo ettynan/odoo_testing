@@ -1,0 +1,58 @@
+# ---------------------------
+# Python / Virtual Environment
+# ---------------------------
+venv/
+.env/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# ---------------------------
+# Robot Framework Output Files
+# ---------------------------
+output.xml
+log.html
+report.html
+debug.log
+*.log
+*.output
+*.xml
+
+# Per-test run artifacts
+*.robot.png
+*.png
+*.jpg
+
+# ---------------------------
+# Selenium / Browser Artifacts
+# ---------------------------
+chromedriver.log
+selenium-screenshot-*
+seleniumwire/
+.swd/
+
+# ---------------------------
+# IDE / Editor Files
+# ---------------------------
+.vscode/
+.idea/
+*.iml
+
+# ---------------------------
+# OS Files
+# ---------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# Project-specific
+# ---------------------------
+# Do not commit recordings or video captures
+recordings/
+videos/
+
+# Do not commit test data dumps / temporary folders
+tmp/
+temp/
+cache/
