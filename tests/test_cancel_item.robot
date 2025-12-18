@@ -5,9 +5,10 @@ Resource    resources/lunch_keywords.resource
 Cancel Item Test
     Open Browser And Login
     Open Lunch App
-    Select Lunch Item
+    Select Random Lunch Item
     Add Item To Cart
     Place Order Now
     Open My Orders
     Cancel Item
+    Sleep   3 s
     [Teardown]    Close Browser

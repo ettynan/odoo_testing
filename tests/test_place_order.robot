@@ -5,7 +5,7 @@ Resource    resources/lunch_keywords.resource
 Place Order Test
     Open Browser And Login
     Open Lunch App
-    Select Lunch Item
+    Select Random Lunch Item
     Add Item To Cart
     Select Random Lunch Item
     Add Item To Cart

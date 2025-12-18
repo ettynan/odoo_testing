@@ -62,17 +62,8 @@ Open Lunch App
     # Confirm the page actually reached "Order Your Lunch"
     Wait For Element Stable    xpath=//li[@class='breadcrumb-item active']/span[normalize-space()='Order Your Lunch']
 
-Select Lunch Item
-    # Click first lunch item
-    Click Element    xpath=(//div[contains(@class,'oe_kanban_global_click')])[1]
-
-    # Verify the item details popup is visible
-    Wait For Element Stable    xpath=//div[contains(@class,'modal-dialog')]
-
-    # Optional: Confirm modal title exists (Configure Your Order)
-    Wait For Element Stable    xpath=//h4[contains(.,'Order') or contains(.,'Configure')]
-
 Select Random Lunch Item
+    # Pick a food item at random
     ${elements}=    Get WebElements    xpath=//div[contains(@class,'oe_kanban_global_click')]
     ${count}=    Get Length    ${elements}
     ${index}=    Evaluate    random.randint(1, ${count})    random
