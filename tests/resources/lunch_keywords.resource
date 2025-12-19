@@ -10,16 +10,22 @@ ${PASSWORD}     user1
 
 *** Keywords ***
 Handle Password Popup
-    ${clicked}=    Run Keyword And Return Status    Click Button    xpath=//button[normalize-space()='OK']
-    IF    ${clicked}
-        Sleep    0.3
+    #Best effort at handling Chrome data breach generic popup 
+    FOR    ${i}    IN RANGE    5
+        ${visible}=    Run Keyword And Return Status
+        ...    Element Should Be Visible    xpath=//button[normalize-space()='OK']
+        IF    ${visible}
+            Click Button    xpath=//button[normalize-space()='OK']
+            Exit For Loop
+        END
+        Sleep    0.5
     END
 
 Open Browser And Login
     # Create ChromeOptions exactly the way SeleniumLibrary accepts them
     ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
 
-    # The ONLY stable solution for the popup: disable leak detection via prefs
+    # Reduce Chrome password manager prompts via browser preferences
     ${prefs}=    Create Dictionary
     ...    profile.password_manager_enabled=${FALSE}
     ...    credentials_enable_service=${FALSE}
@@ -32,10 +38,10 @@ Open Browser And Login
     Input Text      name=password   ${PASSWORD}
     Click Button    xpath=//button[@type='submit']
     
-    Handle Password Popup
-
     # Wait for login to finish (user menu appears)
     Wait For Element Stable     xpath=//span[contains(@class,'oe_topbar_name')]
+
+    Handle Password Popup
 
 Wait For Element Stable
     [Arguments]    ${locator}    ${retries}=20    ${delay}=0.5
